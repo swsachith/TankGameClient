@@ -11,7 +11,7 @@ public class Bounty extends MapObject {
 		this.timeToLive = timeToLive;
 	}
 
-	public Bounty(int x, int y, String string,int ttl) {
+	public Bounty(int x, int y, String string, int ttl) {
 		super(x, y, string);
 		timeToLive = ttl;
 	}

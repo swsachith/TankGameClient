@@ -3,7 +3,7 @@ package lk.sachithhirantha.gamemodels;
 public class Brick extends Obstacle {
 	private int damage;
 
-	public Brick(int x, int y, String string,int d) {
+	public Brick(int x, int y, String string, int d) {
 		super(x, y, string);
 		damage = d;
 	}

@@ -2,20 +2,20 @@ package lk.sachithhirantha.gamemodels;
 
 public class Player extends MapObject {
 
-	private int points,coins,health,direction;
+	private int points, coins, health, direction;
 
-	private boolean isOpponent,isShot;
+	private boolean isOpponent, isShot;
 
 	public Player(int x, int y, int direction, String playerName, int health,
-			int points,int coins, boolean isOpponent,boolean shot) {
+			int points, int coins, boolean isOpponent, boolean shot) {
 
 		super(x, y, playerName);
 		this.points = points;
 		this.health = health;
 		this.direction = direction;
 		this.isOpponent = isOpponent;
-                this.isShot = shot;
-                this.coins = coins;
+		this.isShot = shot;
+		this.coins = coins;
 	}
 
 	public int getPoints() {
