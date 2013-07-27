@@ -1,12 +1,9 @@
 package lk.sachithhirantha.UI;
 
-import static org.junit.Assert.*;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.newdawn.slick.AppGameContainer;
-import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.SlickException;
 
 public class UITester {
