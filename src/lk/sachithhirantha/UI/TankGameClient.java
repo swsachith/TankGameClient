@@ -4,7 +4,6 @@
  */
 package lk.sachithhirantha.UI;
 
-import java.awt.Graphics;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.GameContainer;
@@ -23,27 +22,23 @@ public class TankGameClient extends BasicGame {
     {
         super("Tank Game");
     }
- 
+    
     public static void main(String[] arguments)
     {
-        try
-        {
-            AppGameContainer app = new AppGameContainer(new TankGameClient());
-            app.setDisplayMode(1280, 720, false);
-            app.start();
-        }
-        catch (SlickException e)
-        {
-            e.printStackTrace();
-        }
-        
+    	try {
+			AppGameContainer app = new AppGameContainer(new TankGameClient());
+			app.setDisplayMode(1280, 720, false);
+			app.start();
+		} catch (SlickException e) {
+			e.printStackTrace();
+		}
     }
- 
+    
     @Override
     public void init(GameContainer container) throws SlickException
     {
         
-        stoneMap = new TiledMap("data/stones.tmx");
+        stoneMap = new TiledMap("data/tiles/stones_20.tmx");
     }
  
     @Override
@@ -53,6 +48,7 @@ public class TankGameClient extends BasicGame {
     
     @Override
     public void render(GameContainer gc, org.newdawn.slick.Graphics grphcs) throws SlickException {
-        stoneMap.render(40, 40);
+    	int pos = (720-20*32)/2;
+        stoneMap.render(pos, pos);
     }
 }

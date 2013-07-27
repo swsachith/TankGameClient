@@ -17,7 +17,7 @@ public class Engine implements Observer{
 	}
 	@Override
 	public void update(Observable o, Object arg) {
-		String message = (String) arg;
+		//String message = (String) arg;
 	}
 	
 	

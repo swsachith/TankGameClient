@@ -1,7 +1,5 @@
 package lk.sachithhirantha.communicator;
 
-import static org.junit.Assert.*;
-
 import java.util.Observable;
 import java.util.Observer;
 

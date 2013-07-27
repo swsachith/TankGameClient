@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="16" height="16" tilewidth="40" tileheight="40">
+ <tileset firstgid="1" name="stone" tilewidth="40" tileheight="40">
+  <image source="stone.jpg" width="64" height="64"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="16" height="16">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NkYGBgHMWjeBSPSAwAbLh3cwAEAAA=
+  </data>
+ </layer>
+</map>

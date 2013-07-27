@@ -1,7 +1,5 @@
 package lk.sachithhirantha.communicator;
 
-import lk.sachithhirantha.communicator.*;
-import static org.junit.Assert.*;
 import lk.sachithhirantha.communicator.Messenger;
 
 import org.junit.After;
