@@ -1,5 +1,4 @@
-package lk.sachithhirantha.AI;
-
+package lk.sachithhirantha.gamemodels;
 import static org.junit.Assert.*;
 import lk.sachithhirantha.controller.Engine;
 
@@ -7,17 +6,16 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-public class BountyHunterTester {
-	private HuntBounty bountyHunter;
-	private Engine engine;
+
+public class CoinTester {
+	Engine engine;
 	@Before
 	public void setUp() throws Exception {
-		bountyHunter = new HuntBounty();
 		engine = Engine.getInstance();
 	}
 
 	@After
-	public void tearDown() throws Exception {
+	public void tearDown(){
 		
 	}
 

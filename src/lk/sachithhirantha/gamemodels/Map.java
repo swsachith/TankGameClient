@@ -1,5 +1,7 @@
 package lk.sachithhirantha.gamemodels;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Observable;
 
 public class Map extends Observable {
@@ -7,12 +9,14 @@ public class Map extends Observable {
 	public static final int HEIGHT = 10, WIDTH = 10;
 	private static Map map = null;
 	private MapObject[][] board;
+	private List<Bounty> bountyMap;
 	private String myPlayerName;
 	private Player[] players;
 
 	private Map() {
 		board = new MapObject[HEIGHT][WIDTH];
 		players = new Player[5];
+		bountyMap = new ArrayList<Bounty>();
 	}
 
 	public static Map getInstance() {
@@ -130,7 +134,13 @@ public class Map extends Observable {
 				Integer.parseInt(coinInfo[3]),
 				Integer.parseInt(coinInfo[2]) / 1000);
 		map.addMapObject(coin);
+		bountyMap.add(coin);
 	}
+	
+	public List<Bounty> getBountyMap() {
+		return bountyMap;
+	}
+	
 
 	private void addMapObject(MapObject obj) {
 		board[obj.getX()][obj.getY()] = obj;

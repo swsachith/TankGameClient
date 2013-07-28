@@ -38,6 +38,7 @@ public class MapController implements Observer {
 		}
 
 	}
+	
 
 	private void setCoinPile(String string) {
 		map.setCoinPile(string);

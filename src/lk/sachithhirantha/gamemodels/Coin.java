@@ -15,4 +15,11 @@ public class Coin extends Bounty {
 	public void setValue(int value) {
 		this.value = value;
 	}
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		String result = "";
+		result += getX()+" and "+ getY();
+		return result;
+	}
 }
