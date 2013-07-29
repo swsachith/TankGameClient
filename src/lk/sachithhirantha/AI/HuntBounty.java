@@ -38,14 +38,14 @@ public class HuntBounty implements Observer {
 
 	private void makeNextDecision() {
 		if (!bountyMap.isEmpty()) {
-			for(Bounty bounty: bountyMap){
-				if(bounty.getTimeToLive() != 0)
-				bounty.setTimeToLive(bounty.getTimeToLive() - 1000 );
-				else{
+			for (Bounty bounty : bountyMap) {
+				if (bounty.getTimeToLive() != 0)
+					bounty.setTimeToLive(bounty.getTimeToLive() - 1000);
+				else {
 					bountyMap.remove(bounty);
 				}
 			}
-			
+
 			Bounty bounty = bountyMap.get(0);
 			if (bounty.getX() > thisPlayer.getX()) {
 				engine.moveRight();
