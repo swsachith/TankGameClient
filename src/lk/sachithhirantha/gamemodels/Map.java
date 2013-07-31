@@ -14,7 +14,7 @@ public class Map extends Observable {
 	private Player[] players;
 
 	private Map() {
-		board = new MapObject[HEIGHT][WIDTH];
+		board = new MapObject[WIDTH][HEIGHT];
 		players = new Player[5];
 		bountyMap = new ArrayList<Bounty>();
 	}
@@ -115,6 +115,8 @@ public class Map extends Observable {
 	}
 
 	public void updateMap(String string) {
+		if(string == null)
+			return;
 		String[] temp = string.split(":");
 		for (int i = 1; i < (temp.length - 1); i++) {
 			updatePlayer(temp[i]);
