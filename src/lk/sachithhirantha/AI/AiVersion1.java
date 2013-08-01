@@ -63,16 +63,18 @@ public class AiVersion1 implements Observer {
 
 	private void makeNextDecision() {
 		for (int i = 0; i < players.length; i++) {
-			if(players[i] != null && (players[i].getX() != thisPlayer.getX() && players[i].getY() != thisPlayer.getY())){
+			System.out.println("inside for loop");
+			if(players[i] != null && (players[i].getX() != thisPlayer.getX() || players[i].getY() != thisPlayer.getY())){
 				if(players[i].getX() == thisPlayer.getX()){
-					shoot();
+					engine.shoot();
+					System.out.println("HEREEEEEEEEEEEEEE");
 					return;
 				}else if(players[i].getY() == thisPlayer.getY()){
-					shoot();
+					engine.shoot();					
 					return;
 				}
 			}
-		}
+		}		
 		makeMove();
 	}
 

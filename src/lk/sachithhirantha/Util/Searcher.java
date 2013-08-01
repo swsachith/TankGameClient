@@ -33,7 +33,7 @@ public class Searcher {
 		players = engine.getPlayers();
 		map = objects;
 		if (destination == null) {
-			destination = players[0];
+			destination = players[2];
 		}
 
 		// initialize the heuristic array
@@ -54,8 +54,11 @@ public class Searcher {
 
 		for (int j = 0; j < HEIGHT; j++) {
 			for (int i = 0; i < WIDTH; i++) {
-				heuristicValue = Math.abs(destination.getX() - i)
-						+ Math.abs(destination.getY() - j);
+				// heuristic value is the straight distance from one point to
+				// another
+				heuristicValue = (int) Math.sqrt((Math.abs(destination.getX()
+						- i))
+						^ 2 + (Math.abs(destination.getY() - j)) ^ 2);
 				distance = Math.abs(thisPlayerX - i)
 						+ Math.abs(thisPlayerY - j);
 				if (j == thisPlayerX && i == thisPlayerY)
@@ -87,7 +90,7 @@ public class Searcher {
 		int thisPlayerX = thisPlayer.getX();
 		int thisPlayerY = thisPlayer.getY();
 		if (destination == null) {
-			destination = players[0];
+			destination = players[2];
 		}
 		int destX = destination.getX();
 		int destY = destination.getY();
@@ -98,8 +101,8 @@ public class Searcher {
 		p = (destY >= thisPlayerY) ? destY : thisPlayerY;
 		q = (destY >= thisPlayerY) ? thisPlayerY : destY;
 
-		for (int j = q; j < p; j++) {
-			for (int i = m; i < n; i++) {
+		for (int j = 0; j <= HEIGHT -1; j++) {
+			for (int i = 0; i <= WIDTH -1; i++) {
 				if (j == thisPlayerY && i == thisPlayerX)
 					heuristics[i][j] = 0;
 				if (heuristics[i][j] == 100000) {
@@ -110,8 +113,9 @@ public class Searcher {
 					continue;
 				else
 					heuristics[i][j] = getMinSurroundHeuristic(i, j) + 1;
+				System.out.print(heuristics[i][j] + " ");
 			}
-
+			System.out.println();
 		}
 		getMinSurroundHeuristic(thisPlayerX, thisPlayerY);
 		return direction;
@@ -141,14 +145,15 @@ public class Searcher {
 			// System.out.println("dir = 1 "+minHeuristic);
 			direction = 1;
 		}
-		System.out.println(minHeuristic + "\t" + direction);
+		// System.out.println(minHeuristic + "\t" + direction);
 		return minHeuristic;
 	}
 
 	public int getDirection() {
 		aStarSearch(engine.getMap(), null);
-		valueIterate(null);
-		valueIterate(null);
+		for (int i = 0; i < 10; i++) {
+			valueIterate(null);
+		}
 		// int direction = getMinSurroundHeuristic(thisPlayer.getX(),
 		// thisPlayer.getY());
 		return direction;

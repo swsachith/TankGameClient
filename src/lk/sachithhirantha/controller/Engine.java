@@ -13,8 +13,6 @@ import lk.sachithhirantha.gamemodels.Player;
  * Gets the messenger from the Messenger class and passes it to the MessageProcessor
  * */
 public class Engine extends Observable implements Observer {
-	// the size of the grid
-	public static final int NO_ROWS = 10, NO_COLUMNS = 10;
 
 	public static Engine engine = null;
 	private Messenger messenger;
