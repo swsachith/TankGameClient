@@ -18,6 +18,20 @@ public class Player extends MapObject {
 		this.coins = coins;
 	}
 
+	public int getOppositeDirection() {
+		switch (direction) {
+		case 0:
+			return 2;
+		case 1:
+			return 3;
+		case 2:
+			return 0;
+		default:
+			return 1;
+		}
+
+	}
+
 	public int getPoints() {
 		return points;
 	}
@@ -64,5 +78,16 @@ public class Player extends MapObject {
 
 	public void setShot(boolean isShot) {
 		this.isShot = isShot;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		// TODO Auto-generated method stub
+		if(obj instanceof Player){
+			Player player = (Player) obj;
+			if(this.getX() == player.getX() && this.getY() == player.getY()){
+				return true;
+			}
+		}
+		return false;
 	}
 }

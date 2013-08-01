@@ -1,7 +1,8 @@
-package lk.sachithhirantha.Util;
+package lk.sachithhirantha.AI;
 
 import static org.junit.Assert.*;
 import lk.sachithhirantha.AI.AiVersion1;
+import lk.sachithhirantha.AI.Searcher;
 import lk.sachithhirantha.controller.Engine;
 import lk.sachithhirantha.gamemodels.Map;
 

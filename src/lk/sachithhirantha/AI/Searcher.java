@@ -1,7 +1,8 @@
-package lk.sachithhirantha.Util;
+package lk.sachithhirantha.AI;
 
 import lk.sachithhirantha.controller.Engine;
 import lk.sachithhirantha.gamemodels.Bounty;
+import lk.sachithhirantha.gamemodels.Coin;
 import lk.sachithhirantha.gamemodels.Map;
 import lk.sachithhirantha.gamemodels.MapObject;
 import lk.sachithhirantha.gamemodels.Obstacle;
@@ -33,7 +34,17 @@ public class Searcher {
 		players = engine.getPlayers();
 		map = objects;
 		if (destination == null) {
-			destination = players[2];
+			for (int i = 0; i < players.length; i++) {
+				if(players[i] != null && !players[i].equals(thisPlayer)){
+					if(players[i].getHealth() != 0){
+						destination = players[i];
+						break;
+					}
+				}
+			}
+		}
+		if(destination == null){
+			destination = thisPlayer;
 		}
 
 		// initialize the heuristic array
@@ -72,7 +83,7 @@ public class Searcher {
 				}
 				// prioritize bounty
 				else if (map[i][j] instanceof Bounty) {
-					heuristics[i][j] = -100;
+					heuristics[i][j] = -1000;
 				} else if (map[i][j] instanceof Player) {
 					heuristics[i][j] = -1000;
 				}
@@ -84,12 +95,12 @@ public class Searcher {
 	}
 
 	// value iteration
-	private int valueIterate(MapObject destination) {
+	private int valueIterate() {
 
 		thisPlayer = engine.getThisPlayer();
 		int thisPlayerX = thisPlayer.getX();
 		int thisPlayerY = thisPlayer.getY();
-		if (destination == null) {
+		/*if (destination == null) {
 			destination = players[2];
 		}
 		int destX = destination.getX();
@@ -99,7 +110,7 @@ public class Searcher {
 		n = (destX >= thisPlayerX) ? destX : thisPlayerX;
 		m = (destX >= thisPlayerX) ? thisPlayerX : destX;
 		p = (destY >= thisPlayerY) ? destY : thisPlayerY;
-		q = (destY >= thisPlayerY) ? thisPlayerY : destY;
+		q = (destY >= thisPlayerY) ? thisPlayerY : destY;*/
 
 		for (int j = 0; j <= HEIGHT -1; j++) {
 			for (int i = 0; i <= WIDTH -1; i++) {
@@ -112,10 +123,10 @@ public class Searcher {
 				else if (heuristics[i][j] == -100)
 					continue;
 				else
-					heuristics[i][j] = getMinSurroundHeuristic(i, j) + 1;
-				System.out.print(heuristics[i][j] + " ");
+					heuristics[i][j] = getMinSurroundHeuristic(i, j) + 50;
+				//System.out.print(heuristics[i][j] + " ");
 			}
-			System.out.println();
+			//System.out.println();
 		}
 		getMinSurroundHeuristic(thisPlayerX, thisPlayerY);
 		return direction;
@@ -152,10 +163,22 @@ public class Searcher {
 	public int getDirection() {
 		aStarSearch(engine.getMap(), null);
 		for (int i = 0; i < 10; i++) {
-			valueIterate(null);
+			valueIterate();
 		}
+		printHeuristics();
+		System.out.println();
 		// int direction = getMinSurroundHeuristic(thisPlayer.getX(),
 		// thisPlayer.getY());
 		return direction;
 	}
+	private void printHeuristics(){
+		for (int i = 0; i < HEIGHT; i++) {
+			for (int k = 0; k < WIDTH; k++) {
+				System.out.print(heuristics[k][i] + " ");
+			}
+			System.out.println();
+			
+		}
+	}
+	
 }

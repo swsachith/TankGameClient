@@ -25,7 +25,7 @@ public class AiVersion1Tester {
 	public void test() {
 		engine.join();
 		try {
-			Thread.sleep(200000);
+			Thread.sleep(999999999);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -112,6 +112,8 @@ public class Map extends Observable {
 				Integer.parseInt(lifePackXY[1]), "LIFEPACK",
 				Integer.parseInt(lpInfo[2]) / 1000);
 		map.addMapObject(lifePack);
+		setChanged();
+		notifyObservers("LIFEPACK_SET");
 	}
 
 	public void updateMap(String string) {
@@ -137,6 +139,8 @@ public class Map extends Observable {
 				Integer.parseInt(coinInfo[2]) / 1000);
 		map.addMapObject(coin);
 		bountyMap.add(coin);
+		setChanged();
+		notifyObservers("COINPILE_SET");
 	}
 	
 	public List<Bounty> getBountyMap() {

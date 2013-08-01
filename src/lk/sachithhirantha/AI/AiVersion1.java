@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
-import lk.sachithhirantha.Util.Searcher;
 import lk.sachithhirantha.controller.Engine;
 import lk.sachithhirantha.gamemodels.Bounty;
 import lk.sachithhirantha.gamemodels.Map;
@@ -33,13 +32,28 @@ public class AiVersion1 implements Observer {
 		if (o instanceof Engine) {
 			if (((String) arg).equals("GLOBAL_UPDATE")) {
 				map = Engine.getInstance().getMap();
-				
+
 				bountyMap = mainMap.getBountyMap();
 				thisPlayer = Engine.getInstance().getThisPlayer();
 				players = mainMap.getPlayers();
 				makeNextDecision();
-				//makeMove();
+				// makeMove();
+			} else if (((String) arg).equals("COINPILE_SET")) {
+				map = Engine.getInstance().getMap();
+				bountyMap = mainMap.getBountyMap();
+				thisPlayer = Engine.getInstance().getThisPlayer();
+				players = mainMap.getPlayers();
+				makeNextDecision();
+				// makeMove();
+			} else if (((String) arg).equals("LIFEPACK_SET")) {
+				map = Engine.getInstance().getMap();
+				bountyMap = mainMap.getBountyMap();
+				thisPlayer = Engine.getInstance().getThisPlayer();
+				players = mainMap.getPlayers();
+				makeNextDecision();
+				// makeMove();
 			}
+
 		}
 	}
 
@@ -62,20 +76,37 @@ public class AiVersion1 implements Observer {
 	}
 
 	private void makeNextDecision() {
+		if (players.length == 0)
+			return;
 		for (int i = 0; i < players.length; i++) {
-			System.out.println("inside for loop");
-			if(players[i] != null && (players[i].getX() != thisPlayer.getX() || players[i].getY() != thisPlayer.getY())){
-				if(players[i].getX() == thisPlayer.getX()){
+			// System.out.println("inside for loop");
+			if (players[i] != null
+					&& (!players[i].equals(thisPlayer))
+					&& players[i].getHealth() != 0) {
+				if(getTankDirection(thisPlayer, players[i]) == thisPlayer.getDirection()){
 					engine.shoot();
-					System.out.println("HEREEEEEEEEEEEEEE");
-					return;
-				}else if(players[i].getY() == thisPlayer.getY()){
-					engine.shoot();					
 					return;
 				}
 			}
-		}		
+		}
 		makeMove();
+	}
+
+	private int getTankDirection(Player currentPlayer, Player destPlayer) {
+		int result = 5;
+		if(currentPlayer.getX() == destPlayer.getX()){
+			if(currentPlayer.getY() > destPlayer.getY())
+				result =  0;
+			else
+				result =  2;
+		}else if(currentPlayer.getY() == destPlayer.getY()) {
+			if(currentPlayer.getX() > destPlayer.getX())
+				result=  3;
+			else
+				result = 1;
+		}
+		System.out.println(result + " Player direction = " +thisPlayer.getDirection());
+		return result;
 	}
 
 	private void shoot() {
